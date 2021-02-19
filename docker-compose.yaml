@@ -1,0 +1,16 @@
+version: "3.1"
+
+services:
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: pizza_delivery
+      MYSQL_DATABASE: pizza_delivery
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+volumes:
+  mysql_data:
+    driver: local

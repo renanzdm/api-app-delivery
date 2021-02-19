@@ -1,0 +1,10 @@
+# Files and directories created by pub
+.dart_tool/
+.packages
+
+# Conventional directory for build outputs
+build/
+mysql_data
+
+# Directory created by dartdoc
+doc/api/
