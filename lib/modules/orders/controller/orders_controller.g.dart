@@ -8,6 +8,7 @@ part of 'orders_controller.dart';
 
 Router _$OrdersControllerRouter(OrdersController service) {
   final router = Router();
-  router.add('GET', r'/', service.find);
+  router.add('POST', r'/', service.saveOrder);
+  router.add('GET', r'/user/<userId>', service.find);
   return router;
 }

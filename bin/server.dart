@@ -11,7 +11,7 @@ import 'package:shelf/shelf_io.dart' as io;
 import 'package:dotenv/dotenv.dart' show load, env;
 
 // For Google Cloud Run, set _hostname to '0.0.0.0'.
-const _hostname = 'localhost';
+const _hostname = '0.0.0.0';
 
 void main(List<String> args) async {
   var parser = ArgParser()..addOption('port', abbr: 'p');

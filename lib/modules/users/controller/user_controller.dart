@@ -17,7 +17,7 @@ class UserController {
   UserController(this._service);
 
   @Route.post('/')
-  Future<Response> helloWorld(Request request) async {
+  Future<Response> register(Request request) async {
     try {
       final requestMap = jsonDecode(await request.readAsString());
       final inputModel = RegisterInputModelMapper(requestMap).mapper();

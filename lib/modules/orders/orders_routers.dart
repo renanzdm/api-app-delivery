@@ -6,6 +6,6 @@ import 'package:shelf_router/src/router.dart';
 class OrdersRouters implements IRouterConfigure {
   @override
   void configure(Router router) {
-    router.mount('/orders/', GetIt.I.get<OrdersController>().router);
+    router.mount('/order/', GetIt.I.get<OrdersController>().router);
   }
 }
