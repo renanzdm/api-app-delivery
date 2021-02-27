@@ -18,9 +18,6 @@ class UserRepository implements IUserRepository {
   Future<void> saveUser(RegisterInputModel inputModel) async {
     final connect = await _connection.openConnection();
     try {
-      print(inputModel.name);
-      print(inputModel.password);
-      print(inputModel.email);
       await connect
           .query('insert into usuario(nome,email,senha) values(?,?,?)', [
         inputModel.name,
@@ -28,7 +25,10 @@ class UserRepository implements IUserRepository {
         inputModel.password,
       ]);
     } on MySqlException catch (e) {
-      print(e);
+      if (e.errorNumber == 1062) {
+        throw DatabaseError(message: 'Email ja se encontra cadastrado');
+      }
+
       throw DatabaseError(message: 'Erro no cadastro');
     } finally {
       await connect?.close();

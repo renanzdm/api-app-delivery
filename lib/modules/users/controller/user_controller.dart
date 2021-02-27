@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:injectable/injectable.dart';
+import 'package:server_app_delivery/application/errors/database_error.dart';
 import 'package:server_app_delivery/application/errors/user_notfound_exception.dart';
 import 'package:server_app_delivery/modules/users/controller/mappers/register_input_model_mapper.dart';
 import 'package:server_app_delivery/modules/users/controller/mappers/user_logion_model_mapper.dart';
@@ -21,11 +22,13 @@ class UserController {
     try {
       final requestMap = jsonDecode(await request.readAsString());
       final inputModel = RegisterInputModelMapper(requestMap).mapper();
-      print(inputModel.name);
       await _service.register(inputModel);
       return Response.ok(jsonEncode({'message': 'Usuario criado com sucesso'}));
+    } on DatabaseError catch (e) {
+      print(e.message);
+      return Response.internalServerError(
+          body: jsonEncode({'message': '${e.message}'}));
     } catch (e) {
-      print(e);
       return Response.internalServerError(
           body: jsonEncode({'message': 'Erro ao registrar usuario'}));
     }
