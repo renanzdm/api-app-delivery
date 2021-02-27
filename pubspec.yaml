@@ -19,3 +19,4 @@ dev_dependencies:
   injectable_generator: ^1.0.7
   pedantic: ^1.9.0
   shelf_router_generator: ^0.7.2+4
+  build_web_compilers:
