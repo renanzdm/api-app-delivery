@@ -21,7 +21,7 @@ class OrdersController {
           SaveOrderInputModelMapper(await request.readAsString()).mapper();
       await _service.saveOrder(inputModel);
 
-      return Response.ok('');
+      return Response.ok('Sucesso');
     } catch (e) {
       print(e);
       return Response.internalServerError(
